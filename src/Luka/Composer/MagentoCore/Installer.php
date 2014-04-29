@@ -12,11 +12,10 @@ use Composer\Plugin\PluginInterface;
 /**
  * Composer Magento Core Installer
  */
-class Installer implements PluginInterface
+class Installer extends LibraryInstaller implements PluginInterface
 {
     public function activate(Composer $composer, IOInterface $io)
     {
-        var_dump($composer);
-        var_dump($io);
+        $composer->getInstallationManager()->addInstaller($this);
     }
 }
