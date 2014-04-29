@@ -37,6 +37,8 @@ class CoreInstaller extends LibraryInstaller
 
     protected function installCode(PackageInterface $package)
     {
+        exit;
+
         parent::installCode($package);
 
         $installPath = $this->getInstallPath($package);
