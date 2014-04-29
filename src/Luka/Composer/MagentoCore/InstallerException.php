@@ -1,6 +1,6 @@
 <?php
 
-namespace Quafzi\Composer\MagentoCore;
+namespace Luka\Composer\MagentoCore;
 
 use \Exception as BaseException;
 

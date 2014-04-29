@@ -3,7 +3,7 @@
  * Magento Core Installer for Composer
  */
 
-namespace Quafzi\Composer\MagentoCore;
+namespace Luka\Composer\MagentoCore;
 
 use MagentoHackathon\Composer\Magento\Installer as MagentoModuleInstaller;
 use Composer\Repository\InstalledRepositoryInterface;

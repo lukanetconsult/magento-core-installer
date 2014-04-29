@@ -4,7 +4,7 @@
  * Composer Magento Installer
  */
 
-namespace Quafzi\Composer\MagentoCore\Command;
+namespace Luka\Composer\MagentoCore\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -42,7 +42,7 @@ EOT
         $im = $composer->getInstallationManager();
 
         /*
-         * @var $moduleInstaller Quafzi\Composer\MagentoCore\Installer
+         * @var $moduleInstaller Luka\Composer\MagentoCore\Installer
          */
         $moduleInstaller = $im->getInstaller("magento-core");
 

@@ -1,5 +1,5 @@
 {
-    "name": "quafzi/magento-core-installer",
+    "name": "luka/magento-core-installer",
     "description": "allow Magento core to be run after installation via Composer",
     "keywords":[ "composer-installer", "magento"],
     "minimum-stability": "dev",
@@ -12,7 +12,7 @@
         }
     ],
     "autoload": {
-        "psr-0": {"Quafzi\\Composer\\MagentoCore": "src/"}
+        "psr-0": {"Luka\\Composer\\MagentoCore": "src/"}
     },
     "require": {
         "magento-hackathon/magento-composer-installer": "*"
@@ -29,8 +29,8 @@
     "extra": {
         "composer-command-registry": [
             "MagentoHackathon\\Composer\\Magento\\Command\\DeployCommand",
-            "Quafzi\\Composer\\MagentoCore\\Command\\DeployCommand"
+            "Luka\\Composer\\MagentoCore\\Command\\DeployCommand"
         ],
-        "class": "Quafzi\\Composer\\MagentoCore\\Installer"
+        "class": "Luka\\Composer\\MagentoCore\\Installer"
     }
 }
