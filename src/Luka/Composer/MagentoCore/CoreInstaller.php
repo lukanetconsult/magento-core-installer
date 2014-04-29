@@ -18,6 +18,8 @@ class CoreInstaller extends LibraryInstaller
 
     protected $magentoLocationInPackage = 'magento';
 
+    protected $defaultMagentoRootDir = './';
+
     /**
      * Initializes Magento Core installer.
      *
@@ -34,8 +36,11 @@ class CoreInstaller extends LibraryInstaller
 
         if(isset($extra['magento-root-dir'])) {
             $magentoRootDir = $extra['magento-root-dir'];
-            $this->magentoRootDir = $magentoRootDir;
+        } else {
+            $magentoRootDir = './';
         }
+
+        $this->magentoRootDir = $magentoRootDir;
     }
 
     public function install(InstalledRepositoryInterface $repo, PackageInterface $package)
@@ -76,9 +81,9 @@ class CoreInstaller extends LibraryInstaller
         $i = new \DirectoryIterator($src);
         foreach($i as $f) {
             if($f->isFile()) {
-                rename($f->getRealPath(), "$dest/" . $f->getFilename());
+                rename($f->getRealPath(), rtrim($dest, '/') . "/" . $f->getFilename());
             } else if(!$f->isDot() && $f->isDir()) {
-                $this->recursiveMove($f->getRealPath(), "$dest/$f");
+                $this->recursiveMove($f->getRealPath(), rtrim($dest, '/') . "/" . $f);
             }
         }
 
