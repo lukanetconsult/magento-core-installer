@@ -16,9 +16,15 @@ class CoreInstaller extends LibraryInstaller
 {
     protected $magentoRootDir;
 
+    protected $defaultMagentoRootDir = './';
+
     protected $magentoLocationInPackage = 'magento';
 
-    protected $defaultMagentoRootDir = './';
+    protected $magentoWritableDir;
+
+    protected $defaultMagentoWritableDir = './';
+
+    protected $writableFolders = array('var', 'media');
 
     /**
      * Initializes Magento Core installer.
@@ -34,6 +40,7 @@ class CoreInstaller extends LibraryInstaller
 
         $extra = $composer->getPackage()->getExtra();
 
+        // Magento root folder
         if(isset($extra['magento-root-dir'])) {
             $magentoRootDir = $extra['magento-root-dir'];
 
@@ -42,10 +49,24 @@ class CoreInstaller extends LibraryInstaller
             }
 
         } else {
-            $magentoRootDir = './';
+            $magentoRootDir = $this->defaultMagentoRootDir;
         }
 
         $this->magentoRootDir = $magentoRootDir;
+
+        // Magento writable folder
+        if(isset($extra['magento-writable-dir'])) {
+            $magentoWritableDir = $extra['magento-writable-dir'];
+
+            if (!file_exists($magentoWritableDir) && !is_dir($magentoWritableDir)) {
+                mkdir($magentoWritableDir);
+            }
+
+        } else {
+            $magentoWritableDir = $this->defaultMagentoWritableDir;
+        }
+
+        $this->magentoWritableDir = $magentoWritableDir;
     }
 
     public function install(InstalledRepositoryInterface $repo, PackageInterface $package)
@@ -55,6 +76,9 @@ class CoreInstaller extends LibraryInstaller
         $installPath = $this->getInstallPath($package);
 
         $this->recursiveMove($installPath . '/' . $this->magentoLocationInPackage, $this->magentoRootDir);
+
+//        foreach()
+
     }
 
     public function supports($packageType)
@@ -63,7 +87,10 @@ class CoreInstaller extends LibraryInstaller
     }
 
     /**
-     * {@inheritDoc}
+     * Do nothing
+     *
+     * @param InstalledRepositoryInterface $repo
+     * @param PackageInterface $package
      */
     public function uninstall(InstalledRepositoryInterface $repo, PackageInterface $package)
     {
@@ -71,7 +98,11 @@ class CoreInstaller extends LibraryInstaller
     }
 
     /**
-     * {@inheritDoc}
+     * Do nothing
+     *
+     * @param InstalledRepositoryInterface $repo
+     * @param PackageInterface $initial
+     * @param PackageInterface $target
      */
     public function update(InstalledRepositoryInterface $repo, PackageInterface $initial, PackageInterface $target)
     {
