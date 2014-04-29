@@ -63,6 +63,22 @@ class CoreInstaller extends LibraryInstaller
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function uninstall(InstalledRepositoryInterface $repo, PackageInterface $package)
+    {
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function update(InstalledRepositoryInterface $repo, PackageInterface $initial, PackageInterface $target)
+    {
+
+    }
+
+    /**
      * Recursively move files from one directory to another
      *
      * @param String $src - Source of files being moved
