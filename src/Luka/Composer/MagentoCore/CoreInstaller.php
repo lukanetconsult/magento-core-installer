@@ -39,9 +39,9 @@ class CoreInstaller extends LibraryInstaller
 
     public function install(InstalledRepositoryInterface $repo, PackageInterface $package)
     {
-        parent::install($repo, $package);
-
-        $installPath = $this->getInstallPath($package);
+//        parent::install($repo, $package);
+//
+//        $installPath = $this->getInstallPath($package);
 
         exit;
 
