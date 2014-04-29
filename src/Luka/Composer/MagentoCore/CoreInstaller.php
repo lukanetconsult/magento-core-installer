@@ -13,6 +13,7 @@ use Composer\Composer;
 class CoreInstaller extends LibraryInstaller
 {
     protected $type = 'magento-core';
+    protected $magentoRootDir;
 
     /**
      * Initializes Magento Core installer.
@@ -28,6 +29,20 @@ class CoreInstaller extends LibraryInstaller
 
         $extra = $composer->getPackage()->getExtra();
 
-        var_dump($extra['magento-root-dir']);
+        if(isset($extra['magento-root-dir'])) {
+            $magentoRootDir = $extra['magento-root-dir'];
+            $this->magentoRootDir = $magentoRootDir;
+        }
     }
+
+    protected function installCode(PackageInterface $package)
+    {
+        parent::installCode($package);
+
+        $installPath = $this->getInstallPath($package);
+
+        var_dump($installPath);
+        var_dump($this->magentoRootDir);
+    }
+
 }
