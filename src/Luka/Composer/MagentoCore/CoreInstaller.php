@@ -6,8 +6,8 @@
 namespace Luka\Composer\MagentoCore;
 
 use Composer\Package\PackageInterface;
-use Composer\Package\InstallerInterface;
 use Composer\Installer\LibraryInstaller;
+use Composer\Installer\InstallerInterface;
 
 class CoreInstaller extends LibraryInstaller implements InstallerInterface
 {
