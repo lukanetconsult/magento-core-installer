@@ -79,6 +79,7 @@ class CoreInstaller extends LibraryInstaller
 
         foreach($this->writableFolders as $writableDir) {
             $this->recursiveMove(rtrim($this->magentoRootDir, '/') . '/' . $writableDir, rtrim($this->magentoWritableDir, '/') . '/' . $writableDir);
+            symlink(rtrim($this->magentoWritableDir, '/') . '/' . $writableDir, rtrim($this->magentoRootDir, '/') . '/' . $writableDir);
         }
 
     }
