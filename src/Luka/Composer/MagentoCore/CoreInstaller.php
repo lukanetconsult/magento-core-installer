@@ -8,7 +8,7 @@ namespace Luka\Composer\MagentoCore;
 use Composer\Package\PackageInterface;
 use Composer\Installer\LibraryInstaller;
 
-class CoreInstaller extends LibraryInstaller
+class CoreInstaller extends LibraryInstaller implements InstallerInterface
 {
     protected $type = 'magento-core';
 
