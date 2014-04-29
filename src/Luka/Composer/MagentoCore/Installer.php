@@ -8,6 +8,8 @@ namespace Luka\Composer\MagentoCore;
 use Composer\Composer;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
+use Composer\Package\PackageInterface;
+use Composer\Installer\LibraryInstaller;
 
 /**
  * Composer Magento Core Installer
