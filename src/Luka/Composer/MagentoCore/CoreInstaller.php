@@ -52,7 +52,8 @@ class CoreInstaller extends LibraryInstaller
     public function supports($packageType)
     {
 
-        var_dump($packageType === $this->type);exit;
+        var_dump($packageType);
+        var_dump($this->type);exit;
         return $packageType === $this->type;
     }
 }
