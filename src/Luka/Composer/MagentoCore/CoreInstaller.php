@@ -42,8 +42,7 @@ class CoreInstaller extends LibraryInstaller
 
         $installPath = $this->getInstallPath($package);
 
-        var_dump($installPath);
-        var_dump($this->magentoRootDir);
+        rename($installPath, $this->magentoRootDir);
     }
 
     public function supports($packageType)
