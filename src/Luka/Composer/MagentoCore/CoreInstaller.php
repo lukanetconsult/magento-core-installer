@@ -14,7 +14,6 @@ use Composer\Composer;
 
 class CoreInstaller extends LibraryInstaller
 {
-    protected $type = 'magento-core';
     protected $magentoRootDir;
 
     /**
@@ -39,11 +38,9 @@ class CoreInstaller extends LibraryInstaller
 
     public function install(InstalledRepositoryInterface $repo, PackageInterface $package)
     {
-//        parent::install($repo, $package);
-//
-//        $installPath = $this->getInstallPath($package);
+        parent::install($repo, $package);
 
-        exit;
+        $installPath = $this->getInstallPath($package);
 
         var_dump($installPath);
         var_dump($this->magentoRootDir);
@@ -51,9 +48,6 @@ class CoreInstaller extends LibraryInstaller
 
     public function supports($packageType)
     {
-
-        var_dump($packageType);
-        var_dump($this->type);
-        return $packageType === $this->type;
+        return $packageType === 'magento-core';
     }
 }
