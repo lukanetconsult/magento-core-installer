@@ -32,8 +32,6 @@ class CoreInstaller extends LibraryInstaller
      */
     public function supports($packageType)
     {
-        echo "          $packageType           ";exit;
-
-        return 'phpdocumentor-template' === $packageType;
+        return 'magento-core' === $packageType;
     }
 }
