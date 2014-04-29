@@ -7,8 +7,12 @@
     "license": "MIT",
     "authors":[
         {
-        "name": "Thomas Birke",
-        "email": "tbirke@netextreme.de"
+            "name": "Thomas Birke",
+            "email": "tbirke@netextreme.de"
+        },
+        {
+            "name": "Zvonimir Buric",
+            "email": "zvonimir.buric@luka.de"
         }
     ],
     "autoload": {
