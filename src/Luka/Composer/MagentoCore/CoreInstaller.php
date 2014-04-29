@@ -73,7 +73,7 @@ class CoreInstaller extends LibraryInstaller
         }
 
         // Open the source directory to read in files
-        $i = new DirectoryIterator($src);
+        $i = new \DirectoryIterator($src);
         foreach($i as $f) {
             if($f->isFile()) {
                 rename($f->getRealPath(), "$dest/" . $f->getFilename());
