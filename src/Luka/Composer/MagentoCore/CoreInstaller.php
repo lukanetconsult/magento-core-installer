@@ -36,6 +36,11 @@ class CoreInstaller extends LibraryInstaller
 
         if(isset($extra['magento-root-dir'])) {
             $magentoRootDir = $extra['magento-root-dir'];
+
+            if (!file_exists($magentoRootDir) && !is_dir($magentoRootDir)) {
+                mkdir($magentoRootDir);
+            }
+
         } else {
             $magentoRootDir = './';
         }
