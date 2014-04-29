@@ -7,26 +7,25 @@ namespace Luka\Composer\MagentoCore;
 
 use Composer\Package\PackageInterface;
 use Composer\Installer\LibraryInstaller;
-use Composer\Installer\InstallerInterface;
 
-class CoreInstaller extends LibraryInstaller implements InstallerInterface
+class CoreInstaller extends LibraryInstaller
 {
     protected $type = 'magento-core';
 
     /**
-     * Initializes Magento Core installer
+     * Initializes Magento Core installer.
      *
-     * @param \Composer\IO\IOInterface $io
-     * @param \Composer\Composer $composer
-     * @param string $type
-     * @throws \ErrorException
+     * @param IOInterface $io
+     * @param Composer    $composer
+     * @param string      $type
+     * @param Filesystem  $filesystem
      */
-    public function __construct(IOInterface $io, Composer $composer, $type = 'magento-module')
+    public function __construct(IOInterface $io, Composer $composer, $type = 'library', Filesystem $filesystem = null)
     {
-        parent::__construct($io, $composer, $type);
+        parent::__construct($io, $composer, $type, $filesystem);
 
         $extra = $composer->getPackage()->getExtra();
 
-        echo $extra['magento-root-dir'];exit;
+        var_dump($extra['magento-root-dir']);
     }
 }
