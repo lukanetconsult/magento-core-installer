@@ -53,7 +53,7 @@ class CoreInstaller extends LibraryInstaller
     {
 
         var_dump($packageType);
-        var_dump($this->type);exit;
+        var_dump($this->type);
         return $packageType === $this->type;
     }
 }
