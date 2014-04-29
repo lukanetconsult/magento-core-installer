@@ -16,6 +16,7 @@ class Installer implements PluginInterface
 {
     public function activate(Composer $composer, IOInterface $io)
     {
-        echo "to";exit;
+        var_dump($composer);
+        var_dump($io);
     }
 }
