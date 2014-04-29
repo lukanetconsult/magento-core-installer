@@ -78,7 +78,7 @@ class CoreInstaller extends LibraryInstaller
             if($f->isFile()) {
                 rename($f->getRealPath(), "$dest/" . $f->getFilename());
             } else if(!$f->isDot() && $f->isDir()) {
-                rmove($f->getRealPath(), "$dest/$f");
+                $this->recursiveMove($f->getRealPath(), "$dest/$f");
                 unlink($f->getRealPath());
             }
         }
