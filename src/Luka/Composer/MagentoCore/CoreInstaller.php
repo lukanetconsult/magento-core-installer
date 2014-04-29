@@ -82,7 +82,7 @@ class CoreInstaller extends LibraryInstaller
             }
         }
 
-        unlink($src);
+        rmdir($src);
 
         return true;
     }
