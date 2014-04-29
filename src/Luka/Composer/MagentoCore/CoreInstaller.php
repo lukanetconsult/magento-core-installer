@@ -9,6 +9,7 @@ use Composer\Package\PackageInterface;
 use Composer\Installer\LibraryInstaller;
 use Composer\Repository\InstalledRepositoryInterface;
 use Composer\IO\IOInterface;
+use Composer\Util\Filesystem;
 use Composer\Composer;
 
 class CoreInstaller extends LibraryInstaller
