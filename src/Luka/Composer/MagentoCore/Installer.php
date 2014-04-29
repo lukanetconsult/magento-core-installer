@@ -14,10 +14,11 @@ use Composer\Installer\LibraryInstaller;
 /**
  * Composer Magento Core Installer
  */
-class Installer extends LibraryInstaller implements PluginInterface
+class Installer implements PluginInterface
 {
     public function activate(Composer $composer, IOInterface $io)
     {
-        $composer->getInstallationManager()->addInstaller($this);
+        $installer = new CoreInstaller($io, $composer);
+        $composer->getInstallationManager()->addInstaller($installer);
     }
 }
