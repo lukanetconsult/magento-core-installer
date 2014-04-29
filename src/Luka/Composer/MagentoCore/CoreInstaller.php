@@ -10,28 +10,22 @@ use Composer\Installer\LibraryInstaller;
 
 class CoreInstaller extends LibraryInstaller
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function getPackageBasePath(PackageInterface $package)
-    {
-        $prefix = substr($package->getPrettyName(), 0, 23);
-        if ('phpdocumentor/template-' !== $prefix) {
-            throw new \InvalidArgumentException(
-                'Unable to install template, phpdocumentor templates '
-                .'should always start their package name with '
-                .'"phpdocumentor/template-"'
-            );
-        }
-
-        return 'data/templates/'.substr($package->getPrettyName(), 23);
-    }
+    protected $type = 'magento-core';
 
     /**
-     * {@inheritDoc}
+     * Initializes Magento Core installer
+     *
+     * @param \Composer\IO\IOInterface $io
+     * @param \Composer\Composer $composer
+     * @param string $type
+     * @throws \ErrorException
      */
-    public function supports($packageType)
+    public function __construct(IOInterface $io, Composer $composer, $type = 'magento-module')
     {
-        return 'magento-core' === $packageType;
+        parent::__construct($io, $composer, $type);
+
+        $extra = $composer->getPackage()->getExtra();
+
+        echo $extra['magento-root-dir'];exit;
     }
 }
