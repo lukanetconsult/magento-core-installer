@@ -46,4 +46,8 @@ class CoreInstaller extends LibraryInstaller
         var_dump($this->magentoRootDir);
     }
 
+    public function supports($packageType)
+    {
+        return $packageType === $this->type;
+    }
 }
