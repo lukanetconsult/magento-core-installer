@@ -83,7 +83,7 @@ class CoreInstaller extends LibraryInstaller
             echo PHP_EOL . rtrim($this->magentoWritableDir, '/') . '/' . $writableDir;
             echo PHP_EOL . rtrim($this->magentoRootDir, '/') . '/' . $writableDir;
 
-            symlink(rtrim($this->magentoWritableDir, '/') . '/' . $writableDir, rtrim($this->magentoRootDir, '/') . '/' . $writableDir);
+            symlink('../' . rtrim($this->magentoWritableDir, '/') . '/' . $writableDir, rtrim($this->magentoRootDir, '/') . '/' . $writableDir);
         }
 
     }
