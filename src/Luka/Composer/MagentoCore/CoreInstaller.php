@@ -26,6 +26,8 @@ class CoreInstaller extends LibraryInstaller
 
     protected $writableFolders = array('var', 'media');
 
+    protected $separateWritable = false;
+
     /**
      * Initializes Magento Core installer.
      *
@@ -67,6 +69,20 @@ class CoreInstaller extends LibraryInstaller
         }
 
         $this->magentoWritableDir = $magentoWritableDir;
+
+        if(isset($extra['magento-separate-writable'])) {
+
+            $separateWritable = $extra['magento-separate-writable'];
+
+            var_dump($separateWritable);
+
+            $magentoWritableDir = $extra['magento-writable-dir'];
+
+            if (!file_exists($magentoWritableDir) && !is_dir($magentoWritableDir)) {
+                mkdir($magentoWritableDir);
+            }
+
+        }
     }
 
     public function install(InstalledRepositoryInterface $repo, PackageInterface $package)
@@ -77,12 +93,13 @@ class CoreInstaller extends LibraryInstaller
 
         $this->recursiveMove($installPath . '/' . $this->magentoLocationInPackage, $this->magentoRootDir);
 
-        foreach($this->writableFolders as $writableDir) {
-            $this->recursiveMove(rtrim($this->magentoRootDir, '/') . '/' . $writableDir, rtrim($this->magentoWritableDir, '/') . '/' . $writableDir);
+        if($this->separateWritable) {
+            foreach($this->writableFolders as $writableDir) {
+                $this->recursiveMove(rtrim($this->magentoRootDir, '/') . '/' . $writableDir, rtrim($this->magentoWritableDir, '/') . '/' . $writableDir);
 
-            symlink(realpath(rtrim($this->magentoWritableDir, '/') . '/' . $writableDir), rtrim($this->magentoRootDir, '/') . '/' . $writableDir);
+                symlink(realpath(rtrim($this->magentoWritableDir, '/') . '/' . $writableDir), rtrim($this->magentoRootDir, '/') . '/' . $writableDir);
+            }
         }
-
     }
 
     public function supports($packageType)
