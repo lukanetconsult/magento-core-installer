@@ -21,10 +21,6 @@
         {
             "type": "composer",
             "url": "http://packages.firegento.com"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/magento-hackathon/magento-composer-installer"
         }
     ],
     "extra": {
