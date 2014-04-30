@@ -1,15 +1,11 @@
 {
     "name": "luka/magento-core-installer",
-    "description": "allow Magento core to be run after installation via Composer",
+    "description": "Magento Core installation via Composer",
     "keywords":[ "composer-installer", "magento"],
     "minimum-stability": "dev",
     "type": "composer-plugin",
     "license": "MIT",
     "authors":[
-        {
-            "name": "Thomas Birke",
-            "email": "tbirke@netextreme.de"
-        },
         {
             "name": "Zvonimir Buric",
             "email": "zvonimir.buric@luka.de"
@@ -25,10 +21,14 @@
         "magento-hackathon/composer-command-integrator":"*"
     },
     "repositories": [
-      {
-        "type": "composer",
-        "url": "http://packages.firegento.com"
-      }
+        {
+            "type": "composer",
+            "url": "http://packages.firegento.com"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/magento-hackathon/magento-composer-installer"
+        }
     ],
     "extra": {
         "composer-command-registry": [
