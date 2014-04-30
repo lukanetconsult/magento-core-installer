@@ -72,16 +72,13 @@ class CoreInstaller extends LibraryInstaller
 
         if(isset($extra['magento-separate-writable'])) {
 
-            $separateWritable = $extra['magento-separate-writable'];
-
-            var_dump($separateWritable);
+            $this->separateWritable = (bool) $extra['magento-separate-writable'];
 
             $magentoWritableDir = $extra['magento-writable-dir'];
 
             if (!file_exists($magentoWritableDir) && !is_dir($magentoWritableDir)) {
                 mkdir($magentoWritableDir);
             }
-
         }
     }
 
