@@ -14,18 +14,42 @@ use Composer\Composer;
 
 class CoreInstaller extends LibraryInstaller
 {
-    protected $magentoRootDir;
+    const COMPOSER_TYPE = 'magento-core';
 
-    protected $defaultMagentoRootDir = './';
+    /**
+     * Default Magento installation path.
+     *
+     * @var string
+     */
+    protected $magentoRootDir = './';
 
+    /**
+     * Magento location in the package.
+     *
+     * @var string
+     */
     protected $magentoLocationInPackage = 'magento';
 
-    protected $magentoWritableDir;
+    /**
+     * Default location for Magento writable folders var, media etc.
+     * Symlinks will be created.
+     *
+     * @var string
+     */
+    protected $magentoWritableDir = './';
 
-    protected $defaultMagentoWritableDir = './';
-
+    /**
+     * Folders that need to be placed in writable folder.
+     *
+     * @var array
+     */
     protected $writableFolders = array('var', 'media');
 
+    /**
+     * Default value. Use this if the 'magento-separate-writable' is not set in composer.json.
+     *
+     * @var bool
+     */
     protected $separateWritable = false;
 
     /**
@@ -42,7 +66,7 @@ class CoreInstaller extends LibraryInstaller
 
         $extra = $composer->getPackage()->getExtra();
 
-        // Magento root folder
+        // Override default Magento root folder
         if(isset($extra['magento-root-dir'])) {
             $magentoRootDir = $extra['magento-root-dir'];
 
@@ -50,11 +74,8 @@ class CoreInstaller extends LibraryInstaller
                 mkdir($magentoRootDir);
             }
 
-        } else {
-            $magentoRootDir = $this->defaultMagentoRootDir;
+            $this->magentoRootDir = $magentoRootDir;
         }
-
-        $this->magentoRootDir = $magentoRootDir;
 
         // Magento writable folder
         if(isset($extra['magento-writable-dir'])) {
@@ -64,11 +85,8 @@ class CoreInstaller extends LibraryInstaller
                 mkdir($magentoWritableDir);
             }
 
-        } else {
-            $magentoWritableDir = $this->defaultMagentoWritableDir;
+            $this->magentoWritableDir = $magentoWritableDir;
         }
-
-        $this->magentoWritableDir = $magentoWritableDir;
 
         if(isset($extra['magento-separate-writable'])) {
 
@@ -101,7 +119,7 @@ class CoreInstaller extends LibraryInstaller
 
     public function supports($packageType)
     {
-        return $packageType === 'magento-core';
+        return $packageType === self::COMPOSER_TYPE;
     }
 
     /**
