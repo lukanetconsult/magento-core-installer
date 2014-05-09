@@ -36,7 +36,7 @@ class CoreInstaller extends LibraryInstaller
      *
      * @var string
      */
-    protected $magentoWritableDir = './';
+    protected $magentoWritableDir = 'writable/';
 
     /**
      * Folders that need to be placed in writable folder.
