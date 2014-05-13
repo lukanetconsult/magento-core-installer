@@ -111,7 +111,6 @@ class CoreInstaller extends LibraryInstaller
         if($this->separateWritable) {
             foreach($this->writableFolders as $writableDir) {
                 $this->recursiveMove(rtrim($this->magentoRootDir, '/') . '/' . $writableDir, rtrim($this->magentoWritableDir, '/') . '/' . $writableDir);
-
                 symlink(realpath(rtrim($this->magentoWritableDir, '/') . '/' . $writableDir), rtrim($this->magentoRootDir, '/') . '/' . $writableDir);
             }
         }
@@ -155,28 +154,29 @@ class CoreInstaller extends LibraryInstaller
     protected function recursiveMove($src, $dest) {
 
         // If source is not a directory stop processing
-        if(!is_dir($src)) return false;
+        if(!is_dir($src)) {
+            return false;
+        }
 
         // If the destination directory does not exist create it
-        if(!is_dir($dest)) {
-            if(!mkdir($dest)) {
-                // If the destination directory could not be created stop processing
-                return false;
-            }
+        if(!is_dir($dest) && !mkdir($dest)) {
+            // If the destination directory could not be created stop processing
+            return false;
         }
 
         // Open the source directory to read in files
         $i = new \DirectoryIterator($src);
         foreach($i as $f) {
-            if($f->isFile()) {
-                rename($f->getRealPath(), rtrim($dest, '/') . "/" . $f->getFilename());
+            $targetPath = rtrim($dest, '/') . "/" . $f->getFilename();
+
+            if($f->isFile() && !file_exists($targetPath)) {
+                rename($f->getRealPath(), $targetPath);
             } else if(!$f->isDot() && $f->isDir()) {
-                $this->recursiveMove($f->getRealPath(), rtrim($dest, '/') . "/" . $f);
+                $this->recursiveMove($f->getRealPath(), $targetPath);
             }
         }
 
-        rmdir($src);
-
+        $this->filesystem->remove($src);
         return true;
     }
 }

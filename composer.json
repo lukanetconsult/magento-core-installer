@@ -1,34 +1,29 @@
 {
-    "name": "luka/magento-core-installer",
-    "description": "Magento Core installation via Composer",
-    "keywords":[ "composer-installer", "magento"],
-    "minimum-stability": "dev",
-    "type": "composer-plugin",
-    "license": "MIT",
-    "authors":[
-        {
-            "name": "Zvonimir Buric",
-            "email": "zvonimir.buric@luka.de"
-        }
-    ],
-    "autoload": {
-        "psr-0": {"Luka\\Composer\\MagentoCore": "src/"}
-    },
-    "require": {
-        "magento-hackathon/magento-composer-installer": "~1",
-	"composer-plugin-api": "1.0.0"
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "http://packages.firegento.com"
-        }
-    ],
-    "extra": {
-        "composer-command-registry": [
-            "MagentoHackathon\\Composer\\Magento\\Command\\DeployCommand",
-            "Luka\\Composer\\MagentoCore\\Command\\DeployCommand"
-        ],
-        "class": "Luka\\Composer\\MagentoCore\\Installer"
+  "name" : "luka/magento-core-installer",
+  "description" : "Magento Core installation via Composer",
+  "require" : {
+    "magento-hackathon/magento-composer-installer" : "~1",
+    "composer-plugin-api" : "1.0.0"
+  },
+  "repositories" : [ {
+    "type" : "composer",
+    "url" : "http://packages.firegento.com"
+  } ],
+  "authors" : [ {
+    "name" : "Zvonimir Buric",
+    "email" : "zvonimir.buric@luka.de"
+  } ],
+  "keywords" : [ "composer-installer", "magento" ],
+  "minimum-stability" : "dev",
+  "extra" : {
+    "composer-command-registry" : [ "MagentoHackathon\\Composer\\Magento\\Command\\DeployCommand", "Luka\\Composer\\MagentoCore\\Command\\DeployCommand" ],
+    "class" : "Luka\\Composer\\MagentoCore\\Installer",
+  },
+  "autoload" : {
+    "psr-0" : {
+      "Luka\\Composer\\MagentoCore" : "src/"
     }
+  },
+  "type" : "composer-plugin",
+  "license" : "MIT"
 }
