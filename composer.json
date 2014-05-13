@@ -15,7 +15,7 @@
         "psr-0": {"Luka\\Composer\\MagentoCore": "src/"}
     },
     "require": {
-        "magento-hackathon/magento-composer-installer": "*",
+        "magento-hackathon/magento-composer-installer": "~1",
 	"composer-plugin-api": "1.0.0"
     },
     "repositories": [
