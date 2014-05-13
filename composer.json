@@ -18,6 +18,9 @@
   "extra" : {
     "composer-command-registry" : [ "MagentoHackathon\\Composer\\Magento\\Command\\DeployCommand", "Luka\\Composer\\MagentoCore\\Command\\DeployCommand" ],
     "class" : "Luka\\Composer\\MagentoCore\\Installer",
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
   },
   "autoload" : {
     "psr-0" : {
