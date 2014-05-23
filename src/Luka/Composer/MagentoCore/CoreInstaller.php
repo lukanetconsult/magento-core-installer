@@ -65,38 +65,16 @@ class CoreInstaller extends LibraryInstaller
         parent::__construct($io, $composer, $type, $filesystem);
 
         $extra = $composer->getPackage()->getExtra();
+        $this->separateWritable = (isset($extra['magento-separate-writable']))? (bool)$extra['magento-separate-writable'] : false;
 
         // Override default Magento root folder
         if(isset($extra['magento-root-dir'])) {
-            $magentoRootDir = $extra['magento-root-dir'];
-
-            if (!file_exists($magentoRootDir) && !is_dir($magentoRootDir)) {
-                mkdir($magentoRootDir);
-            }
-
-            $this->magentoRootDir = $magentoRootDir;
+            $this->magentoRootDir = $extra['magento-root-dir'];
         }
 
         // Magento writable folder
-        if(isset($extra['magento-writable-dir'])) {
-            $magentoWritableDir = $extra['magento-writable-dir'];
-
-            if (!file_exists($magentoWritableDir) && !is_dir($magentoWritableDir)) {
-                mkdir($magentoWritableDir);
-            }
-
-            $this->magentoWritableDir = $magentoWritableDir;
-        }
-
-        if(isset($extra['magento-separate-writable'])) {
-
-            $this->separateWritable = (bool) $extra['magento-separate-writable'];
-
-            $magentoWritableDir = $extra['magento-writable-dir'];
-
-            if (!file_exists($magentoWritableDir) && !is_dir($magentoWritableDir)) {
-                mkdir($magentoWritableDir);
-            }
+        if($this->separateWritable && isset($extra['magento-writable-dir'])) {
+            $this->magentoWritableDir = $extra['magento-writable-dir'];
         }
     }
 
@@ -104,8 +82,17 @@ class CoreInstaller extends LibraryInstaller
     {
         parent::install($repo, $package);
 
-        $installPath = $this->getInstallPath($package);
+        if (!file_exists($this->magentoRootDir) && !is_dir($this->magentoRootDir)) {
+            mkdir($this->magentoRootDir);
+        }
 
+        if ($this->separateWritable) {
+            if (!file_exists($this->magentoWritableDir) && !is_dir($this->magentoWritableDir)) {
+                mkdir($this->magentoWritableDir);
+            }
+        }
+
+        $installPath = $this->getInstallPath($package);
         $this->recursiveMove($installPath . '/' . $this->magentoLocationInPackage, $this->magentoRootDir);
 
         if($this->separateWritable) {
