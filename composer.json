@@ -4,10 +4,6 @@
   "require" : {
     "composer-plugin-api" : "1.0.0"
   },
-  "repositories" : [ {
-    "type" : "composer",
-    "url" : "http://packages.firegento.com"
-  } ],
   "authors" : [ {
     "name" : "Zvonimir Buric",
     "email" : "zvonimir.buric@luka.de"
@@ -18,7 +14,6 @@
   "keywords" : [ "composer-installer", "magento" ],
   "minimum-stability" : "dev",
   "extra" : {
-    "composer-command-registry" : [ "MagentoHackathon\\Composer\\Magento\\Command\\DeployCommand", "Luka\\Composer\\MagentoCore\\Command\\DeployCommand" ],
     "class" : "Luka\\Composer\\MagentoCore\\Installer",
     "branch-alias" : {
       "dev-master" : "1.0.x-dev"
