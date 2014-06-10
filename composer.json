@@ -2,7 +2,8 @@
   "name" : "luka/magento-core-installer",
   "description" : "Magento Core installation via Composer",
   "require" : {
-    "composer-plugin-api" : "1.0.0"
+    "composer-plugin-api" : "1.0.0",
+    "magento-hackathon/magento-composer-installer" : "*"
   },
   "authors" : [ {
     "name" : "Zvonimir Buric",
