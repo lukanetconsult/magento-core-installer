@@ -20,8 +20,5 @@ class Installer implements PluginInterface
     {
         $coreInstaller = new CoreInstaller($io, $composer);
         $composer->getInstallationManager()->addInstaller($coreInstaller);
-
-        $libInstaller = new LibInstaller($io, $composer);
-        $composer->getInstallationManager()->addInstaller($libInstaller);
     }
 }
