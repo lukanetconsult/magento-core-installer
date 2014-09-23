@@ -29,11 +29,6 @@ All you need to do is adding a composer.json to the zip and add a repository (e.
 
 ## Extras
 
-* magento-root-dir [string]
-  Magento installation target path (document root)
-
-* magento-separate-writable [bool]
-  Should use separate writable folder for var and media directories
-
-* magento-writable-dir [string]
-  The directory where to find the var and media directory (symlink target).
+* **magento-root-dir** [string]: Magento installation target path (document root)
+* **magento-separate-writable** [bool]: Should use separate writable folder for var and media directories
+* **magento-writable-dir** [string]: The directory where to find the var and media directory (symlink target).
