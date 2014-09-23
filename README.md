@@ -17,9 +17,21 @@ All you need to do is adding a composer.json to the zip and add a repository (e.
     ],
     "require" : {
         "luka/magento-core-installer": "~1"
+    }
+}
+```
+
+## Usage for installing the magento instance
+
+```json
+{
+    "name" : "acme/my-magento-inst",
+    "description" : "My Custom Magento Instance",
+    "require" : {
+        "magento/core": "1.9.*"
     },
     "extra": {
-        "magento-root-dir": "www.production/",
+        "magento-root-dir": "public/",
         "magento-separate-writable": true,
         "magento-writable-dir": "writable/",
         "magento-deploystrategy": "copy"
